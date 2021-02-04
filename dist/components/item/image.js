@@ -1,17 +1,27 @@
-var ImageItem = (function () {
-    function ImageItem(title, url) {
-        var temp = document.createElement('template');
-        temp.innerHTML = "\n    <li class=\"document__item\">\n      <div class=\"item__box\">\n        <h3 class=\"item__title\"></h3>\n        <div class=\"item__image\"></div>\n        <button class=\"item__delete\">\u274E</button>\n      </div>\n    </li>\n    ";
-        this.element = temp.content.firstElementChild;
-        var imageElement = this.element.querySelector('.item__image');
-        imageElement.style.backgroundImage = "url('" + url + "')";
-        var titleElement = this.element.querySelector('.item__title');
-        titleElement.textContent = title;
-    }
-    ImageItem.prototype.attachTo = function (parent, position) {
-        if (position === void 0) { position = 'afterbegin'; }
-        parent.insertAdjacentElement(position, this.element);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
     };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+import { BaseComponent } from './../component.js';
+var ImageItem = (function (_super) {
+    __extends(ImageItem, _super);
+    function ImageItem(title, url) {
+        var _this = _super.call(this, "\n      <li class=\"document__item\">\n        <div class=\"item__box\">\n          <h3 class=\"item__title\"></h3>\n          <div class=\"item__image\"></div>\n          <button class=\"item__delete\">\u274E</button>\n        </div>\n      </li>") || this;
+        var imageElement = _this.element.querySelector('.item__image');
+        imageElement.style.backgroundImage = "url('" + url + "')";
+        var titleElement = _this.element.querySelector('.item__title');
+        titleElement.textContent = title;
+        return _this;
+    }
     return ImageItem;
-}());
+}(BaseComponent));
 export { ImageItem };

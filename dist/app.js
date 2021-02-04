@@ -4,8 +4,9 @@ var App = (function () {
     function App(appRoot) {
         this.page = new Page();
         this.page.attachTo(appRoot);
-        this.imageItem = new ImageItem('Image', './asset/bg.jpg');
-        this.imageItem.attachTo(document.querySelector('.document__items'));
+        var items = document.querySelector('.document__items');
+        var imageItem = new ImageItem('Image', './asset/bg.jpg');
+        imageItem.attachTo(items, 'beforeend');
     }
     return App;
 }());

@@ -12,11 +12,27 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 import { BaseComponent } from './component.js';
-var Page = (function (_super) {
-    __extends(Page, _super);
-    function Page() {
+var Item = (function (_super) {
+    __extends(Item, _super);
+    function Item() {
+        return _super.call(this, "\n      <li class=\"document__item\">\n        <button class=\"document__delete\">\u274E</button>\n      </li>\n    ") || this;
+    }
+    Item.prototype.addChild = function (child) {
+        var container = this.element;
+        child.attachTo(container);
+    };
+    return Item;
+}(BaseComponent));
+var Items = (function (_super) {
+    __extends(Items, _super);
+    function Items() {
         return _super.call(this, '<ul class="document__items"></ul>') || this;
     }
-    return Page;
+    Items.prototype.addChild = function (box) {
+        var item = new Item();
+        item.addChild(box);
+        item.attachTo(this.element, 'beforeend');
+    };
+    return Items;
 }(BaseComponent));
-export { Page };
+export { Items };

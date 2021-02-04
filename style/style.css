@@ -91,6 +91,21 @@ body {
   flex-basis: 50%;
   max-width: 50%;
   padding: 10px;
+  position: relative;
+}
+
+.document__delete {
+  font-size: 1.25rem;
+  position: absolute;
+  top: 6px;
+  right: 7px;
+  display: block;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+
+.document__delete:hover {
+  opacity: 1;
 }
 
 .item__box {
@@ -104,7 +119,6 @@ body {
   box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.4);
   border-radius: 6px;
   overflow: hidden;
-  position: relative;
 }
 
 .item__title {
@@ -148,20 +162,6 @@ body {
 .item__video > iframe {
   width: 100%;
   height: 100%;
-}
-
-.item__delete {
-  font-size: 1.25rem;
-  position: absolute;
-  top: 6px;
-  right: 7px;
-  display: block;
-  opacity: 0.6;
-  transition: opacity 0.3s;
-}
-
-.item__delete:hover {
-  opacity: 1;
 }
 
 /* Footer */

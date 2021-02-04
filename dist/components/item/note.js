@@ -15,7 +15,7 @@ import { BaseComponent } from './../component.js';
 var NoteItem = (function (_super) {
     __extends(NoteItem, _super);
     function NoteItem(title, content) {
-        var _this = _super.call(this, "\n      <li class=\"document__item\">\n        <div class=\"item__box\">\n          <h3 class=\"item__title\"></h3>\n          <p class=\"item__content\"></p>\n          <button class=\"item__delete\">\u274E</button>\n        </div>\n      </li>\n    ") || this;
+        var _this = _super.call(this, "\n    <div class=\"item__box\">\n      <h3 class=\"item__title\"></h3>\n      <p class=\"item__content\"></p>\n    </div>\n    ") || this;
         var titleElement = _this.element.querySelector('.item__title');
         titleElement.textContent = title;
         var contentElement = _this.element.querySelector('.item__content');

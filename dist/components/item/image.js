@@ -15,11 +15,11 @@ import { BaseComponent } from './../component.js';
 var ImageItem = (function (_super) {
     __extends(ImageItem, _super);
     function ImageItem(title, url) {
-        var _this = _super.call(this, "\n      <li class=\"document__item\">\n        <div class=\"item__box\">\n          <h3 class=\"item__title\"></h3>\n          <div class=\"item__image\"></div>\n          <button class=\"item__delete\">\u274E</button>\n        </div>\n      </li>") || this;
-        var imageElement = _this.element.querySelector('.item__image');
-        imageElement.style.backgroundImage = "url('" + url + "')";
+        var _this = _super.call(this, "\n      <li class=\"document__item\">\n        <div class=\"item__box\">\n          <h3 class=\"item__title\"></h3>\n          <div class=\"item__image\"></div>\n          <button class=\"item__delete\">\u274E</button>\n        </div>\n      </li>\n    ") || this;
         var titleElement = _this.element.querySelector('.item__title');
         titleElement.textContent = title;
+        var imageElement = _this.element.querySelector('.item__image');
+        imageElement.style.backgroundImage = "url('" + url + "')";
         return _this;
     }
     return ImageItem;

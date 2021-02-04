@@ -1,4 +1,5 @@
 import { BaseComponent } from './../component.js';
+
 export class ImageItem extends BaseComponent<HTMLElement> {
   constructor(title: string, url: string) {
     super(`
@@ -8,16 +9,17 @@ export class ImageItem extends BaseComponent<HTMLElement> {
           <div class="item__image"></div>
           <button class="item__delete">❎</button>
         </div>
-      </li>`);
-
-    const imageElement = this.element.querySelector(
-      '.item__image'
-    )! as HTMLElement;
-    imageElement.style.backgroundImage = `url('${url}')`;
+      </li>
+    `);
 
     const titleElement = this.element.querySelector(
       '.item__title'
-    )! as HTMLElement;
+    )! as HTMLHeadElement;
     titleElement.textContent = title;
+
+    const imageElement = this.element.querySelector(
+      '.item__image'
+    )! as HTMLDivElement;
+    imageElement.style.backgroundImage = `url('${url}')`;
   }
 }

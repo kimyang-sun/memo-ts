@@ -1,13 +1,13 @@
 import { TextInput } from './components/popup/input/text_input.js';
 import { MediaInput } from './components/popup/input/media_input.js';
-import { InputPopUp } from './components/popup/popup.js';
+import { InputPopUp, MediaData, TextData } from './components/popup/popup.js';
 import { Composable, Item, Items } from './components/items.js';
 import { Component } from './components/component.js';
 import { VideoItem } from './components/item/video.js';
 import { NoteItem } from './components/item/note.js';
 import { ImageItem } from './components/item/image.js';
 
-type InputType = MediaInput | TextInput;
+type InputType = (MediaData | TextData) & Component;
 type InputConstructor<T = InputType> = {
   new (): T;
 };

@@ -15,7 +15,7 @@ import { BaseComponent } from './../../component.js';
 var MediaInput = (function (_super) {
     __extends(MediaInput, _super);
     function MediaInput() {
-        return _super.call(this, "\n      <div class=\"form__container\">\n        <div class=\"form__box\">\n          <label for=\"title\" class=\"font-potta\">Title</label>\n          <input type=\"text\" id=\"title\" />\n        </div>\n        <div class=\"form__box\">\n          <label for=\"url\" class=\"font-potta\">URL</label>\n          <input type=\"text\" id=\"url\" />\n        </div>\n      </div>\n    ") || this;
+        return _super.call(this, "\n      <div class=\"form__container\">\n        <div class=\"form__box\">\n          <label for=\"title\" class=\"font-potta\">Title</label>\n          <input type=\"text\" id=\"title\" autocomplete=\"off\" />\n        </div>\n        <div class=\"form__box\">\n          <label for=\"url\" class=\"font-potta\">URL</label>\n          <input type=\"text\" id=\"url\" autocomplete=\"off\" />\n        </div>\n      </div>\n    ") || this;
     }
     Object.defineProperty(MediaInput.prototype, "title", {
         get: function () {

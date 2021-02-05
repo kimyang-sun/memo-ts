@@ -28,7 +28,7 @@ export class VideoItem extends BaseComponent<HTMLElement> {
   }
 
   convertToURL(url: string): string {
-    const regex = /^(?:https?:\/\/)?(?:www\.)?(?:(?:youtube.com\/(?:(?:watch\?v=)|(?:embed\/))([a-zA-Z0-9-]{11}))|(?:youtu.be\/([a-zA-Z0-9-]{11})))/;
+    const regex = /^(?:https?:\/\/)?(?:www\.)?(?:(?:youtube.com\/(?:(?:watch\?v=)|(?:embed\/))([a-zA-Z0-9-_]{11}))|(?:youtu.be\/([a-zA-Z0-9-_]{11})))/;
     const match = url.match(regex);
     const videoId = match ? match[1] || match[2] : undefined;
     if (videoId) {

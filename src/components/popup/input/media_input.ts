@@ -1,15 +1,18 @@
+import { MediaData } from './../popup.js';
 import { BaseComponent } from './../../component.js';
-export class MediaInput extends BaseComponent<HTMLElement> {
+export class MediaInput
+  extends BaseComponent<HTMLElement>
+  implements MediaData {
   constructor() {
     super(`
       <div class="form__container">
         <div class="form__box">
           <label for="title" class="font-potta">Title</label>
-          <input type="text" id="title" />
+          <input type="text" id="title" autocomplete="off" />
         </div>
         <div class="form__box">
           <label for="url" class="font-potta">URL</label>
-          <input type="text" id="url" />
+          <input type="text" id="url" autocomplete="off" />
         </div>
       </div>
     `);

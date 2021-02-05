@@ -3,6 +3,15 @@ import { BaseComponent, Component } from './../component.js';
 
 type OnListner = () => void;
 
+export interface MediaData {
+  readonly title: string;
+  readonly url: string;
+}
+
+export interface TextData {
+  readonly title: string;
+  readonly content: string;
+}
 export class InputPopUp
   extends BaseComponent<HTMLElement>
   implements Composable {

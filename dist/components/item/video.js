@@ -23,7 +23,7 @@ var VideoItem = (function (_super) {
         return _this;
     }
     VideoItem.prototype.convertToURL = function (url) {
-        var regex = /^(?:https?:\/\/)?(?:www\.)?(?:(?:youtube.com\/(?:(?:watch\?v=)|(?:embed\/))([a-zA-Z0-9-]{11}))|(?:youtu.be\/([a-zA-Z0-9-]{11})))/;
+        var regex = /^(?:https?:\/\/)?(?:www\.)?(?:(?:youtube.com\/(?:(?:watch\?v=)|(?:embed\/))([a-zA-Z0-9-_]{11}))|(?:youtu.be\/([a-zA-Z0-9-_]{11})))/;
         var match = url.match(regex);
         var videoId = match ? match[1] || match[2] : undefined;
         if (videoId) {

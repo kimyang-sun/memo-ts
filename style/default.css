@@ -74,6 +74,9 @@ textarea {
   border: 0;
   background-color: transparent;
   font-family: inherit;
+}
+
+button {
   cursor: pointer;
 }
 

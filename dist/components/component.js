@@ -8,6 +8,12 @@ var BaseComponent = (function () {
         if (position === void 0) { position = 'afterbegin'; }
         parent.insertAdjacentElement(position, this.element);
     };
+    BaseComponent.prototype.removeFrom = function (parent) {
+        if (parent !== this.element.parentElement) {
+            throw new Error('Parent mismatch!');
+        }
+        parent.removeChild(this.element);
+    };
     return BaseComponent;
 }());
 export { BaseComponent };

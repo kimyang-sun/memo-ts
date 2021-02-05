@@ -85,6 +85,7 @@ body {
   overflow-y: auto;
   margin: 0 -10px;
   align-content: flex-start;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .document__item {
@@ -225,7 +226,8 @@ body {
   text-align: left;
 }
 
-.form__box > input {
+.form__box > input,
+.form__box > textarea {
   width: 100%;
   height: 36px;
   background-color: #fff;

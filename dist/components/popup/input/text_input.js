@@ -11,11 +11,11 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import { BaseComponent } from './../../component';
+import { BaseComponent } from './../../component.js';
 var TextInput = (function (_super) {
     __extends(TextInput, _super);
     function TextInput() {
-        return _super.call(this, "\n      <div class=\"form__container\">\n        <div class=\"form__box\">\n          <label for=\"title\">Title</label>\n          <input type=\"text\" id=\"title\" />\n        </div>\n        <div class=\"form__box\">\n          <label for=\"content\">URL</label>\n          <textarea type=\"text\" row=\"3\" id=\"content\" />\n        </div>\n      </div>\n    ") || this;
+        return _super.call(this, "\n      <div class=\"form__container\">\n        <div class=\"form__box\">\n          <label for=\"title\" class=\"font-potta\">Title</label>\n          <input type=\"text\" id=\"title\" />\n        </div>\n        <div class=\"form__box\">\n          <label for=\"content\" class=\"font-potta\">Content</label>\n          <input type=\"text\" id=\"content\">\n        </div>\n      </div>\n    ") || this;
     }
     Object.defineProperty(TextInput.prototype, "title", {
         get: function () {

@@ -1,15 +1,15 @@
-import { BaseComponent } from './../../component';
+import { BaseComponent } from './../../component.js';
 export class TextInput extends BaseComponent<HTMLElement> {
   constructor() {
     super(`
       <div class="form__container">
         <div class="form__box">
-          <label for="title">Title</label>
+          <label for="title" class="font-potta">Title</label>
           <input type="text" id="title" />
         </div>
         <div class="form__box">
-          <label for="content">URL</label>
-          <textarea type="text" row="3" id="content" />
+          <label for="content" class="font-potta">Content</label>
+          <input type="text" id="content">
         </div>
       </div>
     `);

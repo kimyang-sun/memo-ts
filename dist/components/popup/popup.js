@@ -18,19 +18,19 @@ var InputPopUp = (function (_super) {
         var _this = _super.call(this, "\n    <section class=\"popup\">\n      <div class=\"popup__content\">\n        <button class=\"popup__close\">\u274E</button>\n        <div class=\"popup__substance\"></div>\n        <button class=\"popup__submit font-potta\">CREATE</button>\n      </div>\n    </section>\n    ") || this;
         var closeBtn = _this.element.querySelector('.popup__close');
         closeBtn.onclick = function () {
-            _this.closeListner && _this.closeListner();
+            _this.closeListener && _this.closeListener();
         };
         var submitBtn = _this.element.querySelector('.popup__submit');
         submitBtn.onclick = function () {
-            _this.submitListner && _this.submitListner();
+            _this.submitListener && _this.submitListener();
         };
         return _this;
     }
-    InputPopUp.prototype.setOnCloseListner = function (listner) {
-        this.closeListner = listner;
+    InputPopUp.prototype.setOnCloseListener = function (listener) {
+        this.closeListener = listener;
     };
-    InputPopUp.prototype.setOnSubmitListner = function (listner) {
-        this.submitListner = listner;
+    InputPopUp.prototype.setOnSubmitListener = function (listener) {
+        this.submitListener = listener;
     };
     InputPopUp.prototype.addChild = function (child) {
         var substance = this.element.querySelector('.popup__substance');

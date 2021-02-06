@@ -1,7 +1,7 @@
 import { Composable } from './../items.js';
 import { BaseComponent, Component } from './../component.js';
 
-type OnListner = () => void;
+type OnListener = () => void;
 
 export interface MediaData {
   readonly title: string;
@@ -15,8 +15,8 @@ export interface TextData {
 export class InputPopUp
   extends BaseComponent<HTMLElement>
   implements Composable {
-  private closeListner?: OnListner;
-  private submitListner?: OnListner;
+  private closeListener?: OnListener;
+  private submitListener?: OnListener;
   constructor() {
     super(`
     <section class="popup">
@@ -32,23 +32,23 @@ export class InputPopUp
       '.popup__close'
     )! as HTMLButtonElement;
     closeBtn.onclick = () => {
-      this.closeListner && this.closeListner();
+      this.closeListener && this.closeListener();
     };
 
     const submitBtn = this.element.querySelector(
       '.popup__submit'
     )! as HTMLButtonElement;
     submitBtn.onclick = () => {
-      this.submitListner && this.submitListner();
+      this.submitListener && this.submitListener();
     };
   }
 
-  setOnCloseListner(listner: OnListner) {
-    this.closeListner = listner;
+  setOnCloseListener(listener: OnListener) {
+    this.closeListener = listener;
   }
 
-  setOnSubmitListner(listner: OnListner) {
-    this.submitListner = listner;
+  setOnSubmitListener(listener: OnListener) {
+    this.submitListener = listener;
   }
 
   addChild(child: Component) {

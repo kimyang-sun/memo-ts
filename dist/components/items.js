@@ -43,21 +43,39 @@ var Item = (function (_super) {
     };
     Item.prototype.dragStart = function (_) {
         this.notifyDragObserver('start');
+        this.element.classList.add('dragged');
     };
     Item.prototype.dragEnd = function (_) {
         this.notifyDragObserver('end');
+        this.element.classList.remove('dragged');
     };
     Item.prototype.dragEnter = function (_) {
         this.notifyDragObserver('enter');
+        this.element.classList.add('entered');
     };
     Item.prototype.dragLeave = function (_) {
         this.notifyDragObserver('leave');
+        this.element.classList.remove('entered');
     };
     Item.prototype.notifyDragObserver = function (state) {
         this.dragListener && this.dragListener(this, state);
     };
     Item.prototype.setOnDragListener = function (listener) {
         this.dragListener = listener;
+    };
+    Item.prototype.muteChildren = function (state) {
+        if (state === 'mute') {
+            this.element.classList.add('mute');
+        }
+        else {
+            this.element.classList.remove('mute');
+        }
+    };
+    Item.prototype.getBoundingRect = function () {
+        return this.element.getBoundingClientRect();
+    };
+    Item.prototype.onDropped = function () {
+        this.element.classList.remove('entered');
     };
     return Item;
 }(BaseComponent));
@@ -67,6 +85,7 @@ var Items = (function (_super) {
     function Items(itemConstructor) {
         var _this = _super.call(this, '<ul class="document__items"></ul>') || this;
         _this.itemConstructor = itemConstructor;
+        _this.children = new Set();
         _this.element.addEventListener('dragover', function (event) {
             _this.dragOver(event);
         });
@@ -82,9 +101,28 @@ var Items = (function (_super) {
         item.attachTo(this.element, 'beforeend');
         item.setOnDeleteListener(function () {
             item.removeFrom(_this.element);
+            _this.children.delete(item);
         });
+        this.children.add(item);
         item.setOnDragListener(function (target, state) {
-            console.log(target, state);
+            switch (state) {
+                case 'start':
+                    _this.dragTarget = target;
+                    _this.updateItems('mute');
+                    break;
+                case 'end':
+                    _this.dragTarget = undefined;
+                    _this.updateItems('unmute');
+                    break;
+                case 'enter':
+                    _this.dropTarget = target;
+                    break;
+                case 'leave':
+                    _this.dropTarget = undefined;
+                    break;
+                default:
+                    throw new Error("Invalid state: " + state);
+            }
         });
     };
     Items.prototype.dragOver = function (event) {
@@ -92,6 +130,20 @@ var Items = (function (_super) {
     };
     Items.prototype.dragDrop = function (event) {
         event.preventDefault();
+        if (!this.dropTarget)
+            return;
+        if (this.dragTarget && this.dragTarget !== this.dropTarget) {
+            var dropY = event.clientY;
+            var target = this.dragTarget.getBoundingRect();
+            this.dragTarget.removeFrom(this.element);
+            this.dropTarget.attach(this.dragTarget, dropY < target.y ? 'beforebegin' : 'afterend');
+        }
+        this.dropTarget.onDropped();
+    };
+    Items.prototype.updateItems = function (state) {
+        this.children.forEach(function (item) {
+            item.muteChildren(state);
+        });
     };
     return Items;
 }(BaseComponent));

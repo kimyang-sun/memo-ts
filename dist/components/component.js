@@ -14,6 +14,9 @@ var BaseComponent = (function () {
         }
         parent.removeChild(this.element);
     };
+    BaseComponent.prototype.attach = function (component, position) {
+        component.attachTo(this.element, position);
+    };
     return BaseComponent;
 }());
 export { BaseComponent };

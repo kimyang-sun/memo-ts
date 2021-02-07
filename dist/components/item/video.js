@@ -15,7 +15,7 @@ import { BaseComponent } from './../component.js';
 var VideoItem = (function (_super) {
     __extends(VideoItem, _super);
     function VideoItem(title, url) {
-        var _this = _super.call(this, "\n      <div class=\"item__box\">\n        <h3 class=\"item__title\"></h3>\n        <div class=\"item__video\">\n            <iframe\n              class=\"item__iframe\"\n              frameborder=\"0\"\n              allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\"\n              allowfullscreen\n            ></iframe>\n          </div>\n      </div>\n    ") || this;
+        var _this = _super.call(this, "\n      <div class=\"item__box\">\n        <div class=\"item__video\">\n            <iframe\n              class=\"item__iframe\"\n              frameborder=\"0\"\n              allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\"\n              allowfullscreen\n            ></iframe>\n          </div>\n          <h3 class=\"item__title\"></h3>\n      </div>\n    ") || this;
         var titleElement = _this.element.querySelector('.item__title');
         titleElement.textContent = title;
         var iframeElement = _this.element.querySelector('.item__iframe');

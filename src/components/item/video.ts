@@ -4,7 +4,6 @@ export class VideoItem extends BaseComponent<HTMLElement> {
   constructor(title: string, url: string) {
     super(`
       <div class="item__box">
-        <h3 class="item__title"></h3>
         <div class="item__video">
             <iframe
               class="item__iframe"
@@ -13,6 +12,7 @@ export class VideoItem extends BaseComponent<HTMLElement> {
               allowfullscreen
             ></iframe>
           </div>
+          <h3 class="item__title"></h3>
       </div>
     `);
 

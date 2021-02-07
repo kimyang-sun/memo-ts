@@ -4,8 +4,8 @@ export class ImageItem extends BaseComponent<HTMLElement> {
   constructor(title: string, url: string) {
     super(`
       <div class="item__box">
-        <h3 class="item__title"></h3>
         <div class="item__image"></div>
+        <h3 class="item__title"></h3>
       </div>
     `);
 

@@ -41,10 +41,10 @@ class App {
       new VideoItem('첼시, 그 10년의 역사', 'https://youtu.be/JzYAFeYO6cY')
     );
     this.items.addChild(
-      new ImageItem('랜덤 이미지', 'https://picsum.photos/500/300')
+      new ImageItem('랜덤 이미지', 'https://picsum.photos/560/260')
     );
     this.items.addChild(
-      new ImageItem('랜덤 이미지 두번째', 'http://loremflickr.com/500/300')
+      new ImageItem('랜덤 이미지 두번째', 'http://loremflickr.com/560/260')
     );
     this.items.addChild(
       new NoteItem(
@@ -63,7 +63,7 @@ class App {
     this.items.addChild(
       new ImageItem(
         '랜덤 이미지 세번째',
-        'https://source.unsplash.com/random/500x300'
+        'https://source.unsplash.com/random/560x260'
       )
     );
     this.items.addChild(

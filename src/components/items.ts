@@ -14,6 +14,9 @@ type OnDragListener<T extends Component> = (
 interface ItemContainer extends Component, Composable {
   setOnDeleteListener(listener: OnListener): void;
   setOnDragListener(listener: OnDragListener<Item>): void;
+  muteChildren(state: 'mute' | 'unmute'): void;
+  getBoundingRect(): DOMRect;
+  onDropped(): void;
 }
 
 // 이렇게 사용하는 이유는 만약 DarkItem이 있다면 그것도 똑같이 Item처럼 만들고 밑에 Items의
@@ -74,18 +77,22 @@ export class Item extends BaseComponent<HTMLElement> implements ItemContainer {
 
   dragStart(_: DragEvent) {
     this.notifyDragObserver('start');
+    this.element.classList.add('dragged');
   }
 
   dragEnd(_: DragEvent) {
     this.notifyDragObserver('end');
+    this.element.classList.remove('dragged');
   }
 
   dragEnter(_: DragEvent) {
     this.notifyDragObserver('enter');
+    this.element.classList.add('entered');
   }
 
   dragLeave(_: DragEvent) {
     this.notifyDragObserver('leave');
+    this.element.classList.remove('entered');
   }
 
   notifyDragObserver(state: DragState) {
@@ -95,9 +102,29 @@ export class Item extends BaseComponent<HTMLElement> implements ItemContainer {
   setOnDragListener(listener: OnDragListener<Item>) {
     this.dragListener = listener;
   }
+
+  muteChildren(state: 'mute' | 'unmute') {
+    if (state === 'mute') {
+      this.element.classList.add('mute');
+    } else {
+      this.element.classList.remove('mute');
+    }
+  }
+
+  getBoundingRect(): DOMRect {
+    return this.element.getBoundingClientRect();
+  }
+
+  onDropped() {
+    this.element.classList.remove('entered');
+  }
 }
 
 export class Items extends BaseComponent<HTMLUListElement> {
+  private children = new Set<ItemContainer>();
+  private dragTarget?: ItemContainer;
+  private dropTarget?: ItemContainer;
+
   constructor(private itemConstructor: ItemContainerConstructor) {
     super('<ul class="document__items"></ul>');
 
@@ -116,9 +143,28 @@ export class Items extends BaseComponent<HTMLUListElement> {
     item.attachTo(this.element, 'beforeend');
     item.setOnDeleteListener(() => {
       item.removeFrom(this.element);
+      this.children.delete(item);
     });
+    this.children.add(item);
     item.setOnDragListener((target: Item, state: DragState) => {
-      console.log(target, state);
+      switch (state) {
+        case 'start':
+          this.dragTarget = target;
+          this.updateItems('mute');
+          break;
+        case 'end':
+          this.dragTarget = undefined;
+          this.updateItems('unmute');
+          break;
+        case 'enter':
+          this.dropTarget = target;
+          break;
+        case 'leave':
+          this.dropTarget = undefined;
+          break;
+        default:
+          throw new Error(`Invalid state: ${state}`);
+      }
     });
   }
 
@@ -128,5 +174,23 @@ export class Items extends BaseComponent<HTMLUListElement> {
 
   dragDrop(event: DragEvent) {
     event.preventDefault();
+    if (!this.dropTarget) return;
+    if (this.dragTarget && this.dragTarget !== this.dropTarget) {
+      const dropY = event.clientY;
+      const target = this.dragTarget.getBoundingRect();
+
+      this.dragTarget.removeFrom(this.element);
+      this.dropTarget.attach(
+        this.dragTarget,
+        dropY < target.y ? 'beforebegin' : 'afterend'
+      );
+    }
+    this.dropTarget.onDropped();
+  }
+
+  private updateItems(state: 'mute' | 'unmute') {
+    this.children.forEach((item: ItemContainer) => {
+      item.muteChildren(state);
+    });
   }
 }

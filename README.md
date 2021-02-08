@@ -1,6 +1,6 @@
 # MEMO! (TypeScript)
 
-![image](https://user-images.githubusercontent.com/56675004/107152886-de9caa80-69ad-11eb-8837-c53303504bfc.png)
+![pj_memo](https://user-images.githubusercontent.com/56675004/107218300-c9c62280-6a52-11eb-9654-f39c9e3af389.jpg)
 
 ---
 
